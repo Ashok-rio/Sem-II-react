@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Container, CardBody, Card, Col, Row, Button, Form } from "reactstrap";
+import { Container, CardBody, Card, Col, Row, Button } from "reactstrap";
 import Header from "../Header/Header";
 import "./cart.css";
 import ProductImage from "../Product/ProductImage";
@@ -27,9 +27,6 @@ const Cart = () => {
   const [cart, setCart] = useState();
   const [qty, setQty] = useState();
   
-  // console.log("cards", cart);
-  console.log('Qty',qty);
-
   useEffect(() => {
     async function fetchData() {
       try {

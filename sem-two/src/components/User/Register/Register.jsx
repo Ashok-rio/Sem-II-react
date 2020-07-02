@@ -10,7 +10,6 @@ import {
   Input,
   Col,
 } from "reactstrap";
-import Login from '../Login/Login'
 
 const Register = (props) => {
   const [open ] = useState(props.value);
