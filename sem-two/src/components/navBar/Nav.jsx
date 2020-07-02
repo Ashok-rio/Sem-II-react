@@ -6,6 +6,9 @@ import { makeStyles, fade } from '@material-ui/core/styles';
 import NavIcon from '../../img/NavIcon.png'
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import SearchIcon from '@material-ui/icons/Search';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import OrderIcon from '../../img/Vector.png'
+import './nav.css'
 const useStyles = makeStyles((theme) => ({
     background:{
       backgroundColor:'#0063B1'
@@ -13,6 +16,11 @@ const useStyles = makeStyles((theme) => ({
     button:{
       color:'white',
       marginRight:'2%'
+    },
+    buttonMyOrder:{
+      color:'white',
+      marginRight:'2%',
+      
     },
     title:{
         flex:1,
@@ -89,7 +97,16 @@ const Nav = props => {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
-         <Button className={classes.button}>Login</Button>
+         {localStorage.userToken?<Button className={classes.button}>Login</Button>:
+        <Toolbar> <Button className={classes.button}>
+           <AccountCircleIcon/> Username
+         </Button>
+          <Button disableRipple className={classes.buttonMyOrder}>
+            <img src={OrderIcon} className={'ordericon-navbar'}/>
+          MyOrders
+        </Button>
+        </Toolbar>
+         }
 
          <Button className={classes.button}>
            <ShoppingCartOutlinedIcon />
