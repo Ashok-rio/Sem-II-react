@@ -1,34 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams
-} from "react-router-dom";
-
-
-//components
-import Login from './components/login/Login'
-import Register from './components/register/Register'
-import Nav from './components/navBar/Nav'
-import Home from './components/Home/Home'
-
-function App() {
+import "react-toastify/dist/ReactToastify.css";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Product from './components/Product/Product';
+import Cart from './components/Cart/Cart';
+import Payment from './components/Payments/Payment';
+import Home from './components/Home/Home';
+import Orders from './components/Order/Order'
+ 
+const App = () => {
   return (
-    <div className="App">
-      <Router>
-      
-      <Switch>
-        <Route path="/login" exact children={<div><Login/></div>} />
-        <Route path="/register" exact render={props => <Register {...props}/>} />
-        <Route path="/home" exact render={props => <Home {...props}/>} />
-     </Switch>
-     </Router>
-    </div>
+    <Router>
+      <Route exact path={'/'} component={Home} />
+      <Route exact path={'/product'} component={Product} />
+      <Route exact path={'/cart'} component={Cart} />
+      <Route exact path={'/payment'} component={Payment}/>
+      <Route exact path={'/order'} component={Orders}/>
+    </Router>
   );
 }
 

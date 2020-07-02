@@ -1,7 +1,7 @@
 import React from 'react'
-import {AppBar,Avatar, Toolbar, Typography,InputBase, Button, Fab,useScrollTrigger, Zoom,  IconButton,} from '@material-ui/core';
+import { Button} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import {Container,Row,Col} from 'reactstrap'
+import {Row,Col} from 'reactstrap'
 import './footer.css'
 const useStyles = makeStyles((theme) => ({
   root:{
@@ -48,7 +48,7 @@ function Footer(props) {
                 <ul className={'ul-footer'}>
                         <li className={'footer-heading'}>HELP</li>
                         <li className={'footer-list'}>CUSTOMER </li>
-                        <li className={'footer-list'}>HOW TO ORDER</li>
+                        <li className={'footer-list'}>HOW TO ORDER </li>
                         <li className={'footer-list'}>PAYMENTS </li>
                     </ul>
                 </Col>

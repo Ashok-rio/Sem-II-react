@@ -5,8 +5,8 @@ import './banners.css'
 function Banners(props) {
     return (
         <div>
-            <img src={B1} className={'banner'}/>
-            <img src={B2} className={'banner'} />
+            <img src={B1} className={'banner'} alt={''} />
+            <img src={B2} className={'banner'} alt={''} />
         </div>
     )
 }

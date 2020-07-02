@@ -48,9 +48,9 @@ function GridImgs(props) {
             <Typography  variant='h2' className={classes.title}>
            CELEBRATE A HERITAGE
           </Typography>
-          <Grid container className={classes.root} spacing={10}>
+          <Grid container className={classes.root} spacing={10} style={{padding:'4%'}}>
            {Images.map(data =>{
-            return(<Grid item xs={3} className={classes.Itemdesign}>
+            return(<Grid item xs={3} className={classes.Itemdesign} >
                 <GridContent image={data}/>
             </Grid>)
            })}

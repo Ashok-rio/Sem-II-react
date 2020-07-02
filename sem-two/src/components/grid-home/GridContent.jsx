@@ -1,6 +1,5 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import {Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
 import './gall.css'
 const useStyles = makeStyles({
     root: {
@@ -14,9 +13,9 @@ const useStyles = makeStyles({
 const GridContent = props => {
     const classes = useStyles();
     return (
-       <div>
-          <img src={props.image}  className={'gallery-images'} />
-          </div>
+        <div className={classes.root}>
+          <img src={props.image}  className={'gallery-images'}  alt={''} />
+      </div>
     )
 }
 

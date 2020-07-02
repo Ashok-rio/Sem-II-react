@@ -1,9 +1,8 @@
 import React,{useState, useEffect} from 'react';
 import Slider from "react-slick";
-// import Images from './Imgs';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import {getSlickImgs} from '../../services/Apiservices'
+import { getSlickImgs } from '../../service/ApiService';
 import './slide.css'
 
 var settings = {
@@ -36,7 +35,7 @@ const Sliders = props =>{
     const images = () =>{
         return Imgs.map(data =>(
             <div key={data._id}>  
-                 <img  src={data.url} className={'Slick-img'}/>
+                 <img  src={data.url} className={'Slick-img'} alt={''} />
                 </div>
         ))
     }
