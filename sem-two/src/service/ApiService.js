@@ -43,3 +43,21 @@ exports.getSlickImgs = async()=>{
         throw new Error(errorResponse.error)
     }
 }
+
+exports.createAddress = async (body) => {
+    const response = await fetch("http://localhost:3100/api/slick/getAll", {
+      method: "POST",
+      header: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+  
+    if (response.status === 200) {
+      return await response.json();
+    } else {
+      let errorResponse = await response.json();
+      throw new Error(errorResponse.error);
+    }
+  };
+  
