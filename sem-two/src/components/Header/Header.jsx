@@ -106,7 +106,7 @@ const Nav = (props) => {
             inputProps={{ "aria-label": "search" }}
           />
         </div>
-        {!localStorage ? (
+        {!localStorage.usertoken ? (
           <Button
             className={classes.button}
             onClick={() => {
