@@ -9,8 +9,12 @@ import Payment from './components/Payments/Payment';
 import Home from './components/Home/Home';
 import Orders from './components/Order/Order';
 import OrderOne from './components/Order/OrderOne';
+import Address from './components/Address/Address'
+import AddAddress from './components/Address/addAddress'
+import EditAddress from './components/Address/EditAddress'
+
 import ProgressBar from './components/ProgressBar/ProgressBar';
- 
+
 const App = () => {
   return (
     <Router>
@@ -19,6 +23,9 @@ const App = () => {
       <Route exact path={'/product/:id'} component={Product} />
       <Route exact path={'/cart'} component={Cart} />
       <Route exact path={'/payment'} component={Payment}/>
+      <Route exact path={'/address'} component={Address}/>
+      <Route exact path={'/addaddress'} component={AddAddress}/>
+      <Route exact path={'/address/edit/:id'} component={EditAddress}/>
       <Route exact path={'/order'} component={Orders} />
       <Route exact path={'/order/:id'} component={OrderOne} />
       <Route exact path={'/progress'} component={ProgressBar}/>

@@ -44,7 +44,7 @@ exports.getSlickImgs = async()=>{
     }
 }
 
-exports.getAllProduct = async () => {
+  exports.getAllProduct = async () => {
     const response = await fetch('http://localhost:3100/api/product/getAll', {
         method: 'GET',
         headers: {
@@ -91,6 +91,110 @@ exports.createCart = async (productId,Qty) => {
             'Authorization': token
         },
         body: JSON.stringify(card),
+    })
+    if (response.status === 200) {
+        return await response.json()
+    }
+     else {
+        let errorResponse = await response.json()
+        throw new Error(errorResponse.error)
+    }
+}
+
+exports.createAddress = async (body) => {
+    let address = body;
+    const token = localStorage.getItem('usertoken')
+    const response = await fetch(`http://localhost:3100/api/address/create`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify(address),
+    })
+    if (response.status === 200) {
+        return await response.json()
+    }
+     else {
+        let errorResponse = await response.json()
+        throw new Error(errorResponse.error)
+    }
+}
+
+exports.createOrder = async (address) => {
+    let Body = {
+        address: address
+    };
+    const token = localStorage.getItem('usertoken')
+    const response = await fetch(`http://localhost:3100/api/order/create`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify(Body),
+    })
+    if (response.status === 200) {
+        return await response.json()
+    }
+     else {
+        let errorResponse = await response.json()
+        throw new Error(errorResponse.error)
+    }
+}
+
+exports.getAllAddress = async () => {
+    const token = localStorage.getItem('usertoken')
+    const response = await fetch(`http://localhost:3100/api/address/get`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+    })
+    if (response.status === 200) {
+        return await response.json()
+    }
+     else {
+        let errorResponse = await response.json()
+        throw new Error(errorResponse.error)
+    }
+}
+
+exports.getAddress = async (id) => {
+    const Body = {
+        id:id
+    }
+    const token = localStorage.getItem('usertoken')
+    const response = await fetch(`http://localhost:3100/api/address/getById`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify(Body),
+    })
+    console.log(response,"hihihi")
+    if (response.status === 200) {
+        console.log("successfully")
+        return await response.json();
+    }
+     else {
+        let errorResponse = await response.json()
+        throw new Error(errorResponse.error)
+    }
+}
+
+exports.editAddress = async (body) => {
+    const Body = body;
+    const token = localStorage.getItem('usertoken')
+    const response = await fetch(`http://localhost:3100/api/address/edit`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify(Body),
     })
     if (response.status === 200) {
         return await response.json()
