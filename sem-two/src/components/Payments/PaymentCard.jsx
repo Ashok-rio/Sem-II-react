@@ -30,7 +30,7 @@ const PaymentCard = () => {
           <Col md={12}>
             <Card style={{ padding: "5%" }}>
               <CardBody>
-                <Form onSubmit={paymentAccount}>
+                <Form>
                   <Row>
                     <Col md={12} style={{ padding: "2%" }}>
                       <input
@@ -82,7 +82,7 @@ const PaymentCard = () => {
                   <Row>
                     <Col md={12}>
                       <Button
-                        type="submit"
+                        onClick={paymentAccount}
                         style={{
                           width: "100%",
                           height: "60px",

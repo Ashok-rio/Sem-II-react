@@ -7,7 +7,8 @@ import Product from './components/Product/Product';
 import Cart from './components/Cart/Cart';
 import Payment from './components/Payments/Payment';
 import Home from './components/Home/Home';
-import Orders from './components/Order/OrderOne';
+import Orders from './components/Order/Order';
+import OrderOne from './components/Order/OrderOne';
 import ProgressBar from './components/ProgressBar/ProgressBar';
  
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
       <Route exact path={'/cart'} component={Cart} />
       <Route exact path={'/payment'} component={Payment}/>
       <Route exact path={'/order'} component={Orders} />
+      <Route exact path={'/order/:id'} component={OrderOne} />
       <Route exact path={'/progress'} component={ProgressBar}/>
     </Router>
   );
