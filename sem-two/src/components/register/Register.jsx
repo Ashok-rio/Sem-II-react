@@ -133,7 +133,7 @@ const useStyles = makeStyles((theme) => ({
         let result = await signUp(Name.name, Email.email, Phone.phone, Password.password)
           console.log(result);
           if(result.success === true){
-            await props.history.push('/login')
+            window.location = '/login'
           }
           
        } catch (e) {
