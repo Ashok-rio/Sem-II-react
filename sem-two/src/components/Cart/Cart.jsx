@@ -26,7 +26,7 @@ const Cart = () => {
   return (
     <React.Fragment>
       <Header />
-      <Container fluid={true} style={{ padding: "2%" }}>
+      <Container fluid={true} style={{ padding: "2%" ,marginTop:'35px'}}>
         <Grid container spacing={4} className={classes.root}>
           <Grid item lg={4} md={12} sm={12} xs={12}>
             <Card

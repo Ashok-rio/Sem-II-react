@@ -12,6 +12,7 @@ import {
   Form,
 } from "reactstrap";
 import Header from "../Header/Header";
+import './payment.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,12 +39,12 @@ const Payment = () => {
   return (
     <React.Fragment>
       <Header />
-      <Container fluid={true} style={{ padding: "2%" }}>
+      <Container fluid={true} style={{ padding: "2%" , marginTop:'35px'}}>
         <Grid container spacing={4} className={classes.root}>
-          <Grid item lg={6} md={12} sm={12} xs={12}>
+          <Grid item lg={8} md={12} sm={12} xs={12} style={{borderRight:"1px solid black"}}>
             <Row>
               <Col md={12}>
-                <Card style={{ width: "100%", padding: "5%" }}>
+                <Card style={{ width: "100%", padding: "5%",border:"none" }}>
                   <CardBody>hello</CardBody>
                 </Card>
               </Col>
@@ -51,12 +52,13 @@ const Payment = () => {
             <br />
             <Row>
               <Col md={12}>
-                <Card style={{ width: "80%", padding: "5%" }}>
+                <Card style={{ width: "60%", padding: "5%",border:"none" }}>
                   <CardBody>
                     <h2>Select Payment Method</h2>
-                    <div style={{ padding: "12%" }}>
+                    <br/>
+                    <div style={{ padding: "8%" , backgroundColor:'#f1f1f1'}}>
                       <Form onSubmit={paymentSelect}>
-                        <Card style={{ textAlign: "center" }}>
+                        <Card style={{ textAlign: "center" }} className={'paymentOptionCard'}>
                           <CardBody>
                             <Row>
                               <Col md={1}></Col>
@@ -70,7 +72,7 @@ const Payment = () => {
                           </CardBody>
                         </Card>
                         <br />
-                        <Card style={{ textAlign: "center" }}>
+                        <Card style={{ textAlign: "center" }} className={'paymentOptionCard'}>
                           <CardBody>
                             <Row>
                               <Col md={1}></Col>
@@ -85,6 +87,7 @@ const Payment = () => {
                         </Card>
                         <br />
                         <Button
+                          className={'paymentOptionCard'}
                           style={{
                             width: "100%",
                             height: "60px",
@@ -98,6 +101,19 @@ const Payment = () => {
                     </div>
                   </CardBody>
                 </Card>
+              </Col>
+            </Row>
+          </Grid>
+          <Grid item lg={4} md={12} sm={12} xs={12} style={{padding:'2%' }}>
+            <Row>
+              <Col md={12}>
+                
+                <Card>
+                  <CardBody>
+                    <p>PRICE DETAILS</p>
+                  </CardBody>
+                </Card>
+
               </Col>
             </Row>
           </Grid>
