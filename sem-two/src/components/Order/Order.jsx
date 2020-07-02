@@ -42,7 +42,6 @@ function Order(props) {
                                     </Col>
                                     <Col md={'3'}>
                                         <Typography className={classes.description}>
-
                                             ithu oru product
                                         </Typography>
                                     </Col>
