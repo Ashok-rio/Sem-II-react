@@ -56,7 +56,6 @@ exports.createAddress = async (body) => {
       },
       body: JSON.stringify(body),
     });
-    /home/arun/Desktop/Ashok/sem-two/src/service/ApiService.js
     if (response.status === 200) {
       return await response.json();
     } else {
