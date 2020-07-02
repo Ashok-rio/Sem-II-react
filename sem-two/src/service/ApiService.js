@@ -18,6 +18,7 @@ exports.signUp = async (registerBody) => {
 
 exports.login = async (loginBody) => {
     const Body = loginBody
+    console.log('Body', Body);
     const response = await fetch('http://localhost:3100/api/user/login', {
         method: 'POST',
         headers: {
@@ -29,5 +30,16 @@ exports.login = async (loginBody) => {
         return await response.json()
     } else {
         return await response.json();
+    }
+}
+
+exports.getSlickImgs = async()=>{
+    const response = await fetch('http://localhost:3100/api/slick/getAll')
+
+    if (response.status === 200) {
+        return await response.json()
+    } else {
+        let errorResponse = await response.json()
+        throw new Error(errorResponse.error)
     }
 }

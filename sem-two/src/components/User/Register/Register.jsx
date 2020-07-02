@@ -1,180 +1,169 @@
-import React, { useState } from "react";
-import {
-  Row,
-  Col,
-  Card,
-  CardBody,
-  Button,
-  Form,
-  Label,
-  Input,
-} from "reactstrap";
-import "./register.css";
+import React, { useState} from "react";
 import { signUp } from "../../../service/ApiService";
 import useForm from "../../../hooks/useForm";
-import Home from "../../Home/Home";
+import {
+  Form,
+  Button,
+  Modal,
+  ModalBody,
+  FormGroup,
+  Input,
+  Col,
+} from "reactstrap";
 
-
-const Register = () => {
-  
+const Register = (props) => {
+  const [open ] = useState(props.value);
   const [values, handleChanger] = useForm();
-  const [message, setmessage] = useState({});
-  
-
+  const [message, setMessage] = useState("");
 
   const registerSubmit = async (e) => {
-    e.preventDefault();
-    if (values.name !== "" && values.name !== undefined && values.name !== null) {
-      if (values.email !== "" && values.email !== undefined) {
-        if (values.phone !== "" && values.phone !== undefined) {
-          if (values.password !== "" && values.password !== undefined) {
+      e.preventDefault();
+      let [email, phone, name, password] = [values.email, values.phone, values.name, values.password]; 
+    if (name !== '' && name !== undefined && name.length > 3) {
+      if (phone.length === 10) {
+        if (email.includes("@")) {
+          if (password.length === 8) {
+            
             let result;
-            result = await signUp(values);
-            console.log('hello',result);
-            if (result.success === true) {
-              alert('Register successfully !')
-              window.location.pathname = '/login'
-          }
-          else {
-              setmessage({message:'registerError',error:"Unable to resigter"})
-          }
-          } else {
-            setmessage({ message: "password", error: "password have to register!" });
+              result = await signUp(values);
+            if (result.success) {
+              window.location.pathname = "/login";
+            } else {
+              setMessage(result.error);
             }
-        } else {
-          setmessage({ message: "phone", error: "please input valid phone!" });
+          } else {
+            setMessage("please enter the valid password");
           }
-       } else {
-        setmessage({ message: "email", error: "please input valid email!" });
+        } else {
+          setMessage("please enter the valid email");
+        }
+      } else {
+        setMessage("please enter the valid phone");
       }
-      
     } else {
-      setmessage({ message: "name", error: "please input valid name!" });
+      setMessage("please enter the valid name");
     }
   };
-
+  const close = () => {
+    window.history.back();
+  };
+  
   return (
-    <React.Fragment>
-      <Home link={'/login'} buttonName={'Login'} />
-      <div className={"registerDiv"}>
-        <Card className={"registerCard"}>
-          <CardBody>
-            <Form onSubmit={registerSubmit}>
-              <Row>
-                <Col lg={12} className={"headerRegisterText"}>
-                  <h1>Sign up</h1>
-                  <br />
-                  <p>
-                    or&nbsp;&nbsp;
-                    <span
-                      href={"/login"}
-                      onClick={() => {
-                        window.location = "/login";
-                      }}
-                      className={"loginLinkInReg"}
-                    >
-                      login to account
-                    </span>
-                  </p>
-                  <hr className={"regHr"} />
-                </Col>
-              </Row>
-              <span style={{textAlign:"center",color: "#745aaf"}}>{message.message ==="registerError"?message.error:null}</span>
-              <br />
-              <Row>
-                <Col lg={12}>
-                  <Label>Name</Label>
-                  <span className="ErrorMessagePanel">
-                    {message.message === "name" ? `:  ${message.error}` : null}
-                  </span>
-                </Col>
-              </Row>
-              <Row>
-                <Col lg={8}>
-                  <Input
-                    type="text"
-                    name="name"
-                    placeholder="Enter your name"
-                    value={values.name || ""}
-                    onChange={handleChanger}
-                  />
-                </Col>
-              </Row>
-              <br />
-              <Row>
-                <Col lg={12}>
-                  <Label>Phone</Label>
-                  <span className="ErrorMessagePanel">
-                    {message.message === "phone" ? `:  ${message.error}` : null}
-                  </span>
-                </Col>
-              </Row>
-              <Row>
-                <Col lg={8}>
-                  <Input
-                    type="text"
-                    name="phone"
-                    placeholder="Enter phone number"
-                    value={values.phone || ""}
-                    onChange={handleChanger}
-                  />
-                </Col>
-              </Row>
-              <br />
-              <Row>
-                <Col lg={12}>
-                  <Label>Email</Label>
-                  <span className="ErrorMessagePanel">
-                    {message.message === "email" ? `:  ${message.error}` : null}
-                  </span>
-                </Col>
-              </Row>
-              <Row>
-                <Col lg={8}>
-                  <Input
-                    type="email"
-                    name="email"
-                    id="exampleEmail"
-                    placeholder="with a placeholder"
-                    value={values.email || ""}
-                    onChange={handleChanger}
-                  />
-                </Col>
-              </Row>
-              <br />
-              <Row>
-                <Col lg={12}>
-                  <Label>Password</Label>
-                  <span className="ErrorMessagePanel">
-                    {message.message === "password"
-                      ? `:  ${message.error}`
-                      : null}
-                  </span>
-                </Col>
-              </Row>
-              <Row>
-                <Col lg={8}>
-                  <Input
-                    type="password"
-                    name="password"
-                    placeholder="Enter password"
-                    value={values.password || ""}
-                    onChange={handleChanger}
-                  />
-                </Col>
-              </Row>
-              <br />
-              <Row style={{ marginTop: "30px" }}>
-                <Col lg={8}>
-                  <Button className={"regBtn"}>Register</Button>
-                </Col>
-              </Row>
-            </Form>
-          </CardBody>
-        </Card>
+    <Modal isOpen={open}>
+      <div
+        style={{
+          width: "100%",
+          height: "10%",
+          fontSize: "30px",
+          padding: "40px 70px 0px 70px",
+        }}
+      >
+        Register
+        <span style={{ float: "right" }} onClick={close}>
+          X
+        </span>
       </div>
-    </React.Fragment>
+      <ModalBody>
+        <Form style={{ padding: "50px 0px 50px 60px" }} onSubmit={registerSubmit}>
+          <FormGroup row>
+            <Col sm={12}>
+              <Input
+                type="text"
+                name="name"
+                id="exampleEmail"
+                placeholder="Full Name"
+                onChange={handleChanger}
+                value={values.name || ""}
+                style={{
+                  margin: "8px 0",
+                  boxSizing: "border-box",
+                  border: "none",
+                  borderBottom: "2px solid black",
+                  width: "80%",
+                  padding: "12px 20px",
+                }}
+              />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Col sm={12}>
+              <Input
+                type="text"
+                name="phone"
+                id="exampleEmail"
+                placeholder="Phone Number"
+                onChange={handleChanger}
+                value={values.phone || ""}
+                style={{
+                  margin: "8px 0",
+                  boxSizing: "border-box",
+                  border: "none",
+                  borderBottom: "2px solid black",
+                  width: "80%",
+                  padding: "12px 20px",
+                }}
+              />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Col sm={12}>
+              <Input
+                type="email"
+                name="email"
+                id="exampleEmail"
+                placeholder="Email"
+                onChange={handleChanger}
+                value={values.email || ""}
+                style={{
+                  margin: "8px 0",
+                  boxSizing: "border-box",
+                  border: "none",
+                  borderBottom: "2px solid black",
+                  width: "80%",
+                  padding: "12px 20px",
+                }}
+              />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Col sm={12}>
+              <Input
+                type="password"
+                name="password"
+                id="examplePassword"
+                placeholder="password"
+                onChange={handleChanger}
+                value={values.password || ""}
+                style={{
+                  margin: "8px 0",
+                  boxSizing: "border-box",
+                  border: "none",
+                  borderBottom: "2px solid black",
+                  width: "80%",
+                  padding: "12px 20px",
+                }}
+              />
+            </Col>
+          </FormGroup>
+          {message ? <div style={{marginLeft:'50px',color:'red'}}>{message}</div> : null}
+          <Button
+            type="submit"
+            style={{
+              width: "80%",
+              padding: "20px",
+              margin: "20px 0px",
+              backgroundColor: "#4fa845",
+            }}
+          >
+            Register
+          </Button>
+        </Form>
+        <div style={{textAlign:'center'}}>
+          Already Have A Account?&nbsp;&nbsp;
+          <span onClick={props.click} style={{color:'green',cursor:'pointer'}}>Login</span>
+        </div>
+      </ModalBody>
+    </Modal>
   );
 };
-
 export default Register;
