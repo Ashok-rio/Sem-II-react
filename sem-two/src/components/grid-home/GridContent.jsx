@@ -14,9 +14,9 @@ const useStyles = makeStyles({
 const GridContent = props => {
     const classes = useStyles();
     return (
-        <Card className={classes.root}>
+       <div>
           <img src={props.image}  className={'gallery-images'} />
-      </Card>
+          </div>
     )
 }
 

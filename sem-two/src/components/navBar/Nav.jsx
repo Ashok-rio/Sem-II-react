@@ -97,7 +97,7 @@ const Nav = props => {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
-         {localStorage.userToken?<Button className={classes.button}>Login</Button>:
+         {!localStorage.userToken?<Button className={classes.button}>Login</Button>:
         <Toolbar> <Button className={classes.button}>
            <AccountCircleIcon/> Username
          </Button>
