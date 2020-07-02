@@ -53,9 +53,7 @@ const Login = (props) => {
   const close = () => {
     window.history.back();
   };
-  // const swape = () => {
-  //   window.location.pathname = "/register";
-  // };
+  
   return (
     <div>
       <Modal isOpen={open}>

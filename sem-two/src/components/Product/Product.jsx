@@ -16,7 +16,7 @@ const Product = () => {
   return (
     <React.Fragment>
       <Header />
-      <Container fluid={true} style={{ padding: "3%" }}>
+      <Container fluid={true} style={{ padding: "3%" ,marginTop:'35px'}}>
         <Row>
           <Col lg={12} style={{ textAlign: "center" }}>
             <ProductImage src={Images} className={"productImage"} />
