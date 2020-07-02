@@ -47,13 +47,11 @@ exports.getSlickImgs = async()=>{
 
 
 exports.createAddress = async (body) => {
-    const token = localStorage.getItem('usertoken');
-    console.log(token,"token")
-    const response = await fetch('http://localhost:3100/api/address/create', {
+    const token = localStorage.usertoken;
+    const response = await fetch("http://localhost:3100/api//address/create", {
       method: "POST",
       header: {
-        'Content-Type': 'application/json',
-        'Authorization': localStorage.getItem('usertoken'),
+        Authorization:token
       },
       body: JSON.stringify(body),
     });
@@ -65,3 +63,4 @@ exports.createAddress = async (body) => {
       throw new Error(errorResponse.error);
     }
   };
+  
