@@ -1,21 +1,58 @@
 import React, { useState, useEffect } from "react";
-import { Container, Card, Row, Col } from "reactstrap";
+import { Container, Card, Row, Col, Button } from "reactstrap";
 import { MdAddCircleOutline } from "react-icons/md";
+import { FiEdit } from "react-icons/fi";
+import { IoIosCheckmarkCircle } from "react-icons/io";
 import Header from "./../Header/Header";
+import {
+  getAllAddress,
+  getCart,
+  createOrder,
+} from "./../../service/ApiService";
 
 export default function Address(props) {
   const [address, setAddress] = useState([]);
-  const [upAddress, setUpAddress] = useState([]);
-  const [extra, setExtra] = useState([]);
-  const [value, setValue] = useState([]);
-  const [item, setItem] = useState([]);
-  const [item1, setItem1] = useState([]);
-  const [show, setShow] = useState(false);
-  const [show1, setShow1] = useState(false);
-  const [removeAdd, setRemoveAdd] = useState([]);
-  const [cartData, setCartData] = useState([]);
-  const [addressId, setAddressId] = useState([]);
-  const delivery = ["Home", "Work-Working Days", "Work-Any Day"];
+  const [cart, setCart] = useState({});
+  const [order, setOrder] = useState("");
+  const [message, setMessage] = useState("");
+
+  useEffect(async () => {
+    try {
+      const responce = await getAllAddress();
+      if (responce) {
+        setAddress(responce.address);
+      }
+    } catch (e) {}
+  }, []);
+
+  const Order = async () => {
+    if (order !== "") {
+      try {
+        const result = await createOrder(order);
+        if (result) {
+          console.log("created successfully");
+          window.location.pathname = "/payment";
+        }
+      } catch (e) {}
+    } else {
+      setMessage("please select the address");
+    }
+  };
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        var result = await getCart();
+        if (result.success === true) {
+          setCart(result.carts[0]);
+          console.log(cart);
+        }
+      } catch (e) {
+        console.log(e.message);
+      }
+    }
+    fetchData();
+  }, []);
 
   return (
     <React.Fragment>
@@ -33,21 +70,76 @@ export default function Address(props) {
                   </h1>
                 </Col>
               </Row>
-              <Row  style={{padding:"190px 0px 0px 0px"}}>
-              <Col lg={6}>
-                <Card
-                  style={{
-                    width: "80%",
-                    height: "450px",
-                    margin: "5%",
-                    padding: "140px",
-                  }}
-                >
-                  <MdAddCircleOutline size={"10em"} />
-                  <h4>Add Address</h4>
-                </Card>
-              </Col>
-              <Col lg={6}></Col>
+              <Row style={{ padding: "190px 0px 0px 0px" }}>
+                {address.map((x, i) => {
+                  return (
+                    <Col lg={6} key={i}>
+                      <Card
+                        onClick={() => {
+                          setOrder(x._id);
+                        }}
+                        style={{
+                          width: "80%",
+                          height: "450px",
+                          margin: "5%",
+                          padding: "110px 100px 100px 100px",
+                          textAlign: "center",
+                        }}
+                      >
+                        <Button
+                          href={`/address/edit/${x._id}`}
+                          style={{
+                            borderRadius: "50%",
+                            backgroundColor: "yellow",
+                            color: "black",
+                            width: "40px",
+                            height: "40px",
+                            position: "absolute",
+                            top: "7px",
+                            left: "7px",
+                          }}
+                        >
+                          <FiEdit />
+                        </Button>
+                        <h4>{x.name},</h4>
+                        <p>{x.address}</p>
+                        <span>
+                          {x.town},{x.city}
+                        </span>
+                        <span>{x.state}</span>
+                        <span>Place:{x.type}</span>
+                        <span>PH:{x.phone}</span>
+                        <span
+                          style={{
+                            position: "absolute",
+                            bottom: "7px",
+                            right: "7px",
+                          }}
+                        >
+                          {order === x._id ? (
+                            <IoIosCheckmarkCircle
+                              size={"5em"}
+                              color={"green"}
+                            />
+                          ) : null}
+                        </span>
+                      </Card>
+                    </Col>
+                  );
+                })}
+                <Col lg={6}>
+                  <Card
+                    style={{
+                      width: "80%",
+                      height: "450px",
+                      margin: "5%",
+                      padding: "140px",
+                    }}
+                  >
+                    <MdAddCircleOutline size={"10em"} />
+                    <h4>Add Address</h4>
+                  </Card>
+                </Col>
               </Row>
             </Container>
           </Col>
@@ -68,11 +160,35 @@ export default function Address(props) {
                     style={{ margin: "50px 0px 150px 0px", padding: "30px" }}
                   >
                     <img
-                      src="https://www.adelaidereview.com.au/content/uploads/2019/05/Image-of-a-supermassive-black-hole-created-from-data-captured-by-the-Event-Horizon-Telescope-EHT-850x850.jpg"
+                      src={cart.url}
                       style={{ width: "100%", height: "100%" }}
                     />
-                    <h4 style={{ margin: "50px" }}>price:350</h4>
+                    <h4 style={{ margin: "50px" }}>
+                      price:{Math.floor(cart.price * cart.quantity)}
+                    </h4>
                   </Card>
+                  <span
+                    style={{
+                      color: "red",
+                      position: "relative",
+                      top: "-100px",
+                    }}
+                  >
+                    {message ? message : null}
+                  </span>
+                  <Button
+                    onClick={Order}
+                    style={{
+                      backgroundColor: "#f14e6c",
+                      width: "90%",
+                      height: "50px",
+                      position: "relative",
+                      top: "-65px",
+                      left: "25px",
+                    }}
+                  >
+                    Proceed
+                  </Button>
                 </Col>
               </Row>
             </Container>

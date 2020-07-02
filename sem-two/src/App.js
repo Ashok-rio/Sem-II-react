@@ -9,6 +9,7 @@ import Payment from './components/Payments/Payment';
 import Home from './components/Home/Home';
 import Address from './components/Address/Address'
 import AddAddress from './components/Address/addAddress'
+import EditAddress from './components/Address/EditAddress'
 const App = () => {
   return (
     <Router>
@@ -19,6 +20,7 @@ const App = () => {
       <Route exact path={'/payment'} component={Payment}/>
       <Route exact path={'/address'} component={Address}/>
       <Route exact path={'/addaddress'} component={AddAddress}/>
+      <Route exact path={'/address/edit/:id'} component={EditAddress}/>
     </Router>
   );
 }

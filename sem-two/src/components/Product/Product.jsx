@@ -165,7 +165,7 @@ const Product = (props) => {
                             color="success"
                             style={{ width: "100%" }}
                             onClick={ async () => {
-                              var result = await createCart(products._id, products.quantity);
+                              var result = await createCart(products._id, 1);
                               if (result.success === true) {
                                 // window.location = `/cart`;
                                 console.log('card',result)
