@@ -7,6 +7,7 @@ import Product from './components/Product/Product';
 import Cart from './components/Cart/Cart';
 import Payment from './components/Payments/Payment';
 import Home from './components/Home/Home';
+import Orders from './components/Order/Order'
  
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
       <Route exact path={'/product/:id'} component={Product} />
       <Route exact path={'/cart'} component={Cart} />
       <Route exact path={'/payment'} component={Payment}/>
+      <Route exact path={'/order'} component={Orders}/>
     </Router>
   );
 }
