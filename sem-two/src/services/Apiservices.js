@@ -42,3 +42,14 @@ export async function signUp(name, email, phone, password) {
         throw new Error(errorResponse.error)
     }
 }
+
+export const getSlickImgs = async()=>{
+    const response = await fetch('http://localhost:3100/api/slick/getAll')
+
+    if (response.status === 200) {
+        return await response.json()
+    } else {
+        let errorResponse = await response.json()
+        throw new Error(errorResponse.error)
+    }
+}
