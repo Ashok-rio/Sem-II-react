@@ -9,7 +9,7 @@ const StepProgressBar = (props) => {
           <ProgressBar
               width={"500px"}
         percent={value}
-        filledBackground="linear-gradient(to right, #808080, #808080)"
+        filledBackground="linear-gradient(to right, #bcbcba, #bcbcba)"
       >
         <Step transition="scale">
           {({ accomplished }) => (
@@ -24,7 +24,7 @@ const StepProgressBar = (props) => {
                     : "https://bit.ly/31KNnk5"
                 }
               />
-              <span style={{ position: "absolute", marginTop: "100px" }}>
+              <span style={{ position: "absolute", marginTop: "100px",color:'gray' }}>
                 Shipment{" "}
               </span>
             </React.Fragment>
@@ -45,7 +45,7 @@ const StepProgressBar = (props) => {
                     : "https://bit.ly/31KNnk5"
                 }
               />
-              <span style={{ position: "absolute", marginTop: "100px" }}>
+              <span style={{ position: "absolute", marginTop: "100px",color:'gray' }}>
                 Address{" "}
               </span>
             </React.Fragment>
@@ -66,7 +66,7 @@ const StepProgressBar = (props) => {
                     : "https://bit.ly/31KNnk5"
                 }
               />
-              <span style={{ position: "absolute", marginTop: "100px" }}>
+              <span style={{ position: "absolute", marginTop: "100px",color:'gray' }}>
                 Payment{" "}
               </span>
             </React.Fragment>
@@ -85,7 +85,7 @@ const StepProgressBar = (props) => {
                     :  "https://bit.ly/31KNnk5"
                 }
               />
-              <span style={{ position: "absolute", marginTop: "100px" }}>
+              <span style={{ position: "absolute", marginTop: "100px", color:'gray' }}>
                 Order{" "}
               </span>
             </React.Fragment>
