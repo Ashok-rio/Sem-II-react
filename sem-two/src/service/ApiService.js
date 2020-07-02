@@ -77,3 +77,66 @@ exports.getProductOne = async (id) => {
         throw new Error(errorResponse.error)
     }
 }
+
+exports.createCart = async (productId,Qty) => {
+    let card = {
+        id: productId,
+        quantity: Qty
+    }
+    const token = localStorage.getItem('usertoken')
+    const response = await fetch(`http://localhost:3100/api/cart/create`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify(card),
+    })
+    if (response.status === 200) {
+        return await response.json()
+    }
+     else {
+        let errorResponse = await response.json()
+        throw new Error(errorResponse.error)
+    }
+}
+
+exports.getCart = async () => {
+    const token = localStorage.getItem('usertoken')
+    const response = await fetch('http://localhost:3100/api/cart/getALL', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+    })
+    console.log('response', response);
+    if (response.status === 200) {
+        return await response.json();
+    }
+    else {
+        let errorResponse = await response.json()
+        throw new Error(errorResponse.error)
+    }
+}
+
+exports.updateCart = async (updateValue) => {
+    const Body = updateValue;
+    const token = localStorage.getItem('usertoken')
+    const response = await fetch('http://localhost:3100/api/cart/update', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify(Body),
+    })
+    console.log('Updateresponse', response);
+    if (response.status === 200) {
+        return await response.json();
+    }
+    else {
+        let errorResponse = await response.json()
+        throw new Error(errorResponse.error)
+    }
+}

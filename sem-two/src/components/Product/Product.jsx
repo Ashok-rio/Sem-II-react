@@ -8,7 +8,7 @@ import { Card, CardContent } from "@material-ui/core";
 import StarIcon from "@material-ui/icons/Star";
 import Header from "../Header/Header";
 import SimilarProduct from "./SimilarProduct";
-import { getProductOne } from "../../service/ApiService";
+import { getProductOne , createCart} from "../../service/ApiService";
 
 const Product = (props) => {
   const { match } = props;
@@ -164,8 +164,13 @@ const Product = (props) => {
                           <Button
                             color="success"
                             style={{ width: "100%" }}
-                            onClick={() => {
-                              window.location = `/cart`;
+                            onClick={ async () => {
+                              var result = await createCart(products._id, products.quantity);
+                              if (result.success === true) {
+                                // window.location = `/cart`;
+                                console.log('card',result)
+                              }
+      
                             }}
                           >
                             Buy now(Rs.{products.price})
