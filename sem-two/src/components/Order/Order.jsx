@@ -1,78 +1,103 @@
-import React,{useState, useEffect} from 'react'
+import React, { useState, useEffect } from "react";
 import Header from "../Header/Header";
-import {Row , Col}from 'reactstrap'
-import { makeStyles } from "@material-ui/core/styles";
-import {Typography, Card, Container,Button} from '@material-ui/core';
+import { Grid } from "@material-ui/core";
+import { CardBody, Card, Col, Row, Button } from "reactstrap";
+// import { makeStyles } from "@material-ui/core/styles";
+import img from "../../img/image 77.png";
+import ProductImage from "../Product/ProductImage";
+import "./order.css";
 
-import img from '../../img/image 77.png'
-import './order.css'
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     maxWidth: 345,
+//   },
+//   media: {
+//     height: 300,
+//     marginTop: "20%",
+//   },
+//   title: {
+//     borderBottom: "0.5px",
+//   },
+//   description: {
+//     marginTop: 50,
+//   },
+// }));
 
-const useStyles = makeStyles(theme => ({
-    root: {
-      maxWidth: 345,
-    },
-    media: {
-      height: 300,
-      marginTop: '20%'
-    },title:{
-        borderBottom:'0.5px'
-    },
-    description:{
-        marginTop:50
-    }
-  }));
-  
-function Order(props) {
-    const classes = useStyles()
-    return (
-        <div>
-            <Header/>
-                    <Container>
-                    <Card className = {classes.media}>
-                        <Row className={'heading-orderLists'}>
-                        <Typography gutterBottom variant="h5" component="h2" clasName={classes.title}>Order List</Typography>
-                        </Row>
+const Order = (props) => {
+  // const classes = useStyles();
+  return (
+    <React.Fragment>
+      <Header />
+      <Grid
+        item
+        lg={12}
+        md={12}
+        sm={12}
+        xs={12}
+        style={{ padding: "1%", marginTop: "100px", marginLeft: "60px" }}
+      >
+        <Row>
+          <Col md={12}>
+            <Card
+              style={{
+                width: "90%",
+                backgroundColor: "#f5f5f5",
+                color: "black",
+              }}
+              className={"paymentOptionCard"}
+            >
+              <CardBody>
+                <div style={{ padding: "2%" }}>
+                  <p style={{ marginLeft: "15px" }}>ORDER DETAILS</p>
+                  <hr />
+                  <div style={{ padding: "3%", backgroundColor: "#dddddd" }}>
+                    <Row>
+                      <Col md={12} style={{ padding: "1%" }}>
                         <Row>
-                            <Card className={'row-cont-orderList'}>
-                                <Row>
-                                    <Col md={'3'}>
-                                        <div className={'img-cont-orderList'}>
-                                        <img src={img} className={'w-100'} />
-                                        </div>
-                                    </Col>
-                                    <Col md={'3'}>
-                                        <Typography className={classes.description}>
-
-                                            ithu oru product
-                                        </Typography>
-                                    </Col>
-                                    <Col md={'3'}>
-                                        
-                                    <Typography className={classes.description}>
-                                        quantity1
-                                </Typography>
-                                    </Col>
-                                    <Col md={'3'}>
-                                        <Row>
-                                        <Typography className={classes.description}>
-                                            RS:125
-                                            </Typography>
-                                        </Row>
-                                        <Row>
-                                            <Button variant="contained" className={classes.description}>
-                                                View Details
-                                            </Button>
-                                        </Row>
-                                    </Col>
-                                </Row>
-                            </Card>
+                          <Col md={3} style={{ padding: "1%" }}>
+                            <ProductImage src={img} className={"orderImage"} />
+                          </Col>
+                          <Col md={3} style={{ padding: "1%" }}>
+                            A set of two beautiful looking personalized
+                            plantersand
+                          </Col>
+                          <Col md={3} style={{ padding: "1%" }}>
+                            Quantity 1
+                          </Col>
+                          <Col md={3} style={{ padding: "1%" }}>
+                            <Row>
+                              <Col
+                                style={{
+                                  textAlign: "right",
+                                  color: "blue",
+                                  fontSize: "25px",
+                                }}
+                              >
+                                Rs. 975
+                              </Col>
+                            </Row>
+                          </Col>
                         </Row>
-                    </Card>
-                    </Container>
-        </div>
-    )
-}
+                      </Col>
+                    </Row>
 
+                    <Row>
+                      <Col md={3}></Col>
+                      <Col md={3}></Col>
+                      <Col md={3}></Col>
+                      <Col md={3}>
+                        <Button style={{ width: "100%" }}>View details</Button>
+                      </Col>
+                    </Row>
+                  </div>
+                </div>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
+      </Grid>
+    </React.Fragment>
+  );
+};
 
-export default Order
-
+export default Order;

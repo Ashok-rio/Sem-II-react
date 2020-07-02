@@ -15,6 +15,7 @@ import Header from "../Header/Header";
 import "./payment.css";
 import PaymentSideCard from "./PaymentSideCard";
 import PaymentCard from "./PaymentCard";
+import ProgressBar from '../ProgressBar/ProgressBar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,7 +62,9 @@ const Payment = () => {
               <Row>
                 <Col md={12}>
                   <Card style={{ width: "100%", padding: "5%", border: "none" }}>
-                    <CardBody>hello</CardBody>
+                    <CardBody>
+                      <ProgressBar value={40} />
+                    </CardBody>
                   </Card>
                 </Col>
               </Row>
