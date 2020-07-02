@@ -48,7 +48,7 @@ function Footer(props) {
                 <ul className={'ul-footer'}>
                         <li className={'footer-heading'}>HELP</li>
                         <li className={'footer-list'}>CUSTOMER </li>
-                        <li className={'footer-list'}>HOW TO ORDER </li>
+                        <li className={'footer-list'}>HOW TO ORDER</li>
                         <li className={'footer-list'}>PAYMENTS </li>
                     </ul>
                 </Col>
