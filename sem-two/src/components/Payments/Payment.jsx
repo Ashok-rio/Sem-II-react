@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Payment = () => {
   const [payment, setPayment] = useState();
-  const [debit, setDebit] = useState(true);
+  const [debit, setDebit] = useState(false);
 
   const classes = useStyles();
 
