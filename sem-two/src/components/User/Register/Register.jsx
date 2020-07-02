@@ -10,6 +10,7 @@ import {
   Input,
   Col,
 } from "reactstrap";
+import Login from '../Login/Login'
 
 const Register = (props) => {
   const [open ] = useState(props.value);
@@ -26,9 +27,8 @@ const Register = (props) => {
             
             let result;
               result = await signUp(values);
-            if (result.success) {
-              window.location.pathname = "/login";
-            } else {
+            if (result.success)  return props.click
+             else {
               setMessage(result.error);
             }
           } else {

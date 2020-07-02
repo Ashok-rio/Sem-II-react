@@ -43,3 +43,37 @@ exports.getSlickImgs = async()=>{
         throw new Error(errorResponse.error)
     }
 }
+
+exports.getAllProduct = async () => {
+    const response = await fetch('http://localhost:3100/api/product/getAll', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    console.log('response', response);
+    if (response.status === 200) {
+        return await response.json();
+    }
+    else {
+        let errorResponse = await response.json()
+        throw new Error(errorResponse.error)
+    }
+}
+
+exports.getProductOne = async (id) => {
+    const response = await fetch(`http://localhost:3100/api/product/get/${id}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    console.log('response', response);
+    if (response.status === 200) {
+        return await response.json();
+    }
+    else {
+        let errorResponse = await response.json()
+        throw new Error(errorResponse.error)
+    }
+}

@@ -30,8 +30,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Payment = () => {
   const [payment, setPayment] = useState();
-  const [debit, setDebit] = useState(false);
-  
+  const [debit, setDebit] = useState(true);
+
   const classes = useStyles();
 
   const paymentSelect = async (e) => {
