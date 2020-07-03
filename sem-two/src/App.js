@@ -12,8 +12,10 @@ import OrderOne from './components/Order/OrderOne';
 import Address from './components/Address/Address'
 import AddAddress from './components/Address/addAddress'
 import EditAddress from './components/Address/EditAddress'
-
-import ProgressBar from './components/ProgressBar/ProgressBar';
+import AdminHome from './components/Admin/HomePage/AdminHome'
+import AdminLogin from './components/Admin/Login/Login'
+import AdminRegister from './components/Admin/Register/Register'
+import Profile from './components/Profile/profile'
 
 const App = () => {
   return (
@@ -22,13 +24,20 @@ const App = () => {
       <Route exact path={'/product'} component={ProductAll} />
       <Route exact path={'/product/:id'} component={Product} />
       <Route exact path={'/cart'} component={Cart} />
-      <Route exact path={'/payment'} component={Payment}/>
+      <Route exact path={'/payment'} component={Payment} />
+      
       <Route exact path={'/address'} component={Address}/>
       <Route exact path={'/addaddress'} component={AddAddress}/>
-      <Route exact path={'/address/edit/:id'} component={EditAddress}/>
+      <Route exact path={'/address/edit/:id'} component={EditAddress} />
+      
       <Route exact path={'/order'} component={Orders} />
       <Route exact path={'/order/:id'} component={OrderOne} />
-      <Route exact path={'/progress'} component={ProgressBar}/>
+
+
+      <Route exact path={'/admin/home'}  component={AdminHome}/>
+      <Route exact path={'/admin/register'}  component={AdminRegister}/>
+      <Route exact path={'/admin/login'}  component={AdminLogin}/>
+      <Route exact path={'/user/profile'}  component={Profile}/>
     </Router>
   );
 }
