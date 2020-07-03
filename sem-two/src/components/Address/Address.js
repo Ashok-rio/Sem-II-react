@@ -9,6 +9,7 @@ import {
   getCart,
   createOrder,
 } from "./../../service/ApiService";
+import ProgressBar from '../ProgressBar/ProgressBar';
 
 export default function Address(props) {
   const [address, setAddress] = useState([]);
@@ -62,6 +63,11 @@ export default function Address(props) {
         <Row>
           <Col lg={8}>
             <Container>
+            <Row>
+              <Col lg={12} style={{padding:"5%"}}>
+              <ProgressBar value={40} />
+              </Col>
+            </Row>
               <Row>
                 <Col lg={12}>
                   <h1
