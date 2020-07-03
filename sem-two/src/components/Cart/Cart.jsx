@@ -252,6 +252,7 @@ const Cart = () => {
                       <Row>
                         <Col md={12}>
                           <Button
+                            onClick={() => window.location = '/address'}
                             style={{
                               width: "100%",
                               backgroundColor: "#f14e6c",
