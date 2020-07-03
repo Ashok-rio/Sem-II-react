@@ -21,7 +21,7 @@ const toastOptions = {
   }
 
 const Login = (props) => {
-  const [open] = useState(props.value);
+  const [open,setOpen] = useState(props.value);
   const [values, handleChanger] = useForm();
   const [message, setMessage] = useState("");
 
@@ -50,13 +50,11 @@ const Login = (props) => {
       setMessage("please enter valid email");
     }
   };
-  const close = () => {
-    window.history.back();
-  };
-  
+
+  const toggle = () => setOpen(!open);
   return (
     <div>
-      <Modal isOpen={open}>
+      <Modal isOpen={open} toggle={toggle}>
         <div
           style={{
             width: "100%",
@@ -66,7 +64,7 @@ const Login = (props) => {
           }}
         >
           Login
-          <span style={{ float: "right" }} onClick={close}>
+          <span style={{ float: "right" }} onClick={toggle}>
             X
           </span>
         </div>

@@ -12,7 +12,7 @@ import {
 } from "reactstrap";
 
 const Register = (props) => {
-  const [open ] = useState(props.value);
+  const [open ] = useState(true);
   const [values, handleChanger] = useForm();
   const [message, setMessage] = useState("");
 
@@ -27,7 +27,7 @@ const Register = (props) => {
             let result;
               result = await adminsignUp(values);
             if (result.success) {
-              window.location.pathname = "/login";
+              window.location.pathname = "/admin/login";
             } else {
               setMessage(result.error);
             }
@@ -47,7 +47,9 @@ const Register = (props) => {
   const close = () => {
     window.history.back();
   };
-  
+  const moveOn=()=>{
+    window.location='/admin/login'
+  }
   return (
     <Modal isOpen={open}>
       <div
@@ -160,7 +162,7 @@ const Register = (props) => {
         </Form>
         <div style={{textAlign:'center'}}>
           Already Have A Account?&nbsp;&nbsp;
-          <span onClick={props.click} style={{color:'green',cursor:'pointer'}}>Login</span>
+          <span onClick={moveOn} style={{color:'green',cursor:'pointer'}}>Login</span>
         </div>
       </ModalBody>
     </Modal>

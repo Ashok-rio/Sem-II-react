@@ -12,7 +12,7 @@ import {
 } from "reactstrap";
 
 const Register = (props) => {
-  const [open ] = useState(props.value);
+  const [open ,setOpen] = useState(props.value);
   const [values, handleChanger] = useForm();
   const [message, setMessage] = useState("");
 
@@ -44,10 +44,8 @@ const Register = (props) => {
       setMessage("please enter the valid name");
     }
   };
-  const close = () => {
-    window.history.back();
-  };
   
+  const toggle = () => setOpen(!open);
   return (
     <Modal isOpen={open}>
       <div
@@ -59,7 +57,7 @@ const Register = (props) => {
         }}
       >
         Register
-        <span style={{ float: "right" }} onClick={close}>
+        <span style={{ float: "right" }} onClick={toggle}>
           X
         </span>
       </div>

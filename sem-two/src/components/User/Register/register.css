@@ -20,6 +20,9 @@
     background-color: #745aaf !important;
     color: white !important;
 }
+.modal{
+  top:40px !important;
+}
 /* 
   ##Device = Desktops
   ##Screen = 1281px to higher resolution desktops
