@@ -29,7 +29,7 @@ const Product = (props) => {
       }
     }
     fetchData();
-  }, []);
+  }, [product.id]);
 
   return (
     <React.Fragment>

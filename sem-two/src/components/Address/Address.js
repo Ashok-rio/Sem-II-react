@@ -18,13 +18,18 @@ export default function Address(props) {
   const [message, setMessage] = useState("");
 
 
-  useEffect(async () => {
-    try {
-      const responce = await getAllAddress();
-      if (responce) {
-        setAddress(responce.address);
-      }
-    } catch (e) {}
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const responce = await getAllAddress();
+        if (responce) {
+          setAddress(responce.address);
+        }
+      } catch (e) {}
+    }
+
+    fetchData();
+    
   }, []);
 
   const Order = async () => {
@@ -54,7 +59,7 @@ export default function Address(props) {
       }
     }
     fetchData();
-  }, []);
+  }, [cart]);
 
   return (
     <React.Fragment>

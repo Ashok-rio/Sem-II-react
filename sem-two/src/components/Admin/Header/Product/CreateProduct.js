@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Container, CardBody, Card, CardFooter } from "reactstrap";
+import React, { useState } from "react";
+import { Container} from "reactstrap";
 import { Grid, Typography, Button } from "@material-ui/core";
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from "@material-ui/core/styles";
@@ -39,18 +39,18 @@ const CreateProduct = () => {
         if (product.name < 5) {
             return setMessage('Product Name must have more then 5 characters')
         }
-        if (product.url !== '' || product.color !== '' || product.size !== '', product.price !='', product.quantity != '') {
+        if (product.url !== '' || product.color !== '' || product.size !== ''|| product.price !== ''|| product.quantity !== '') {
             await setMessage('')
-            await createproduct(product)
+            await createproduct()
         }
         else {
             return setMessage('Please enter required field')
         }
     }
-    const createproduct = async (product) => {
+    const createproduct = async () => {
         let result;
         result = await createProduct(product)
-        if (result.success===true) {
+        if (result.success === true) {
             await setProduct(result.product)
             await toast.success(result.message, toastOptions);
              window.location='/admin/home'

@@ -39,7 +39,7 @@ const ProductAll = () => {
     }
     fetchData();
   }, []);
-
+  const capitalize = (str, lower = false) => (lower ? str.toLowerCase() : str).replace(/(?:^|\s|["'([{])+\S/g, match => match.toUpperCase());
   const renderProduct = () => {
     return product.map((data, i) => {
       return (
@@ -56,7 +56,7 @@ const ProductAll = () => {
               <br />
               <CardBody>
                 <div className={"similarProductText"}>
-                  <p>{data.name}</p>
+                  <p>{capitalize(data.name)}</p>
                   <p style={{ color: "#f04e6b" }}>Rs : {data.price}</p>
                   <p>
                     <span>

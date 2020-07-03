@@ -81,24 +81,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+toast.configure();
+
+const toastOptions = {
+  position: "bottom-right",
+  autoClose: 3000,
+  hideProgressBar: true
+}
+
 const Nav = (props) => {
   const [login, setLogin] = useState(false);
   const [register, setRegister] = useState(false);
   const classes = useStyles();
   const [user, setUser] = useState({ admin: '' })
 
-  toast.configure();
-
-  const toastOptions = {
-      position: "bottom-right",
-      autoClose: 3000,
-      hideProgressBar: true
-  }
+  
   useEffect(() => {
-      getUser(1)
-  }, [])
-  const getUser = async () => {
-      let result;
+    async function fetchData() {
+      try {
+        let result;
       result = await getUserData()
       if (result.success) {
           setUser(result.user)
@@ -112,7 +113,13 @@ const Nav = (props) => {
           }
           return console.log(result.error);
       }
-  }
+      } catch (e) {
+        
+      }
+    }
+    fetchData();
+  }, [])
+  
   // const moveOn=()=>{
   //   props.history.push('/user/profile')
   // }
@@ -154,7 +161,8 @@ const Nav = (props) => {
                   <AccountCircleIcon /> {user.name}
             </Button>
                 <Button disableRipple className={classes.buttonMyOrder}>
-                  <img src={OrderIcon} className={"ordericon-navbar"} alt={""} />
+                  <a href={'/'}>
+                  <img src={OrderIcon}  className={"ordericon-navbar"} alt={""} /></a>
               MyOrders
             </Button>
               </Toolbar>

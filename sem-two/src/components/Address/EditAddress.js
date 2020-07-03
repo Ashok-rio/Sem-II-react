@@ -18,15 +18,18 @@ function EditAddress(props) {
 
     const [editAddresses,setEditAddresses] = useState([]);
     const [message,setMessage] = useState('');
-    useEffect(async()=>{
-        try{
-            const result = await getAddress(id);
-            if(result){
-                setEditAddresses(result);
-            }
+  useEffect(() => {
+    async function fetchData() {
+      try{
+        const result = await getAddress(id);
+        if(result){
+            setEditAddresses(result);
         }
-        catch(e){}
-    },[])
+    }
+    catch(e){}
+    }
+    fetchData();
+    },[id])
 
 const editSubmit = async(e) => {
     e.preventDefault();

@@ -4,14 +4,9 @@ import {
     Avatar,
     Toolbar,
     Typography,
-    InputBase,
     Button,
 } from "@material-ui/core";
 import { makeStyles, fade } from "@material-ui/core/styles";
-
-import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
-import SearchIcon from "@material-ui/icons/Search";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import "./header.css";
 import { getUserData } from "../../../service/ApiService";
 import { toast } from "react-toastify";
@@ -151,7 +146,8 @@ const Nav = (props) => {
             }
         }
         getUser(1)
-    }, [])
+    }, [toastOptions])
+    
     var name = String(user.name)
 
     const logout = () => {

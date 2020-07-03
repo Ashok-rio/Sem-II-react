@@ -34,11 +34,11 @@ const AdminHome = () => {
             }
         }
         getUser()
-    }, [])
+    }, [toastOptions])
 
     return (
         <div>
-            {(user.admin == true) ? (<Header />) : (<div className={'container'} style={{ marginTop: '250px' }}>
+            {(user.admin === true) ? (<Header />) : (<div className={'container'} style={{ marginTop: '250px' }}>
                 <Row>
                     <Col lg={2} sm={12} md={10}>
                     </Col>

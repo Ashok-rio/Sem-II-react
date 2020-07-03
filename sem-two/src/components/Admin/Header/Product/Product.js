@@ -3,7 +3,6 @@ import { Container, CardBody, Card, CardFooter } from "reactstrap";
 import { Grid ,Typography} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ProductImage from "./ProductImage";
-import StarIcon from "@material-ui/icons/Star";
 import { getAllProduct } from "../../../../service/ApiService";
 import "./product.css";
 const useStyles = makeStyles((theme) => ({
