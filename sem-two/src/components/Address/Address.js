@@ -9,6 +9,7 @@ import {
   getCart,
   createOrder,
 } from "./../../service/ApiService";
+import ProgressBar from './../ProgressBar/ProgressBar';
 
 export default function Address(props) {
   const [address, setAddress] = useState([]);
@@ -63,12 +64,15 @@ export default function Address(props) {
           <Col lg={8}>
             <Container>
               <Row>
-                <Col lg={12}>
-                  <h1
-                    style={{ position: "absolute", top: "100px", left: "20px" }}
-                  >
+                <Col lg={12} style={{margin:"100px 0px 0px 0px"}}>
+                <div>
+                <ProgressBar value={40} style={{width:"200%"}} />
+                </div>
+                <div style={{position:"relative",top:"140px"}}>
+                <h1>
                     Select Delivery Address
                   </h1>
+                </div>
                 </Col>
               </Row>
               <Row style={{ padding: "190px 0px 0px 0px" }}>
@@ -161,12 +165,12 @@ export default function Address(props) {
                 </Col>
                 <Col lg={11}>
                   <Card
-                    style={{ margin: "50px 0px 150px 0px", padding: "30px", height:'500px' }}
+                    style={{ margin: "50px 0px 150px 0px", padding: "30px", height:'700px' }}
                   >
                     <img
                       src={'https://bit.ly/38kHETf'}
                       alt={''}
-                      style={{ width: "90%", height: "250px" }}
+                      style={{ width: "100%", height: "350px" }}
                     />
                     <h4 style={{ margin: "50px" }}>
                       Price : {cart?Math.floor(cart.price * cart.quantity):null}
