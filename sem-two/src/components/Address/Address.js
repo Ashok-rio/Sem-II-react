@@ -16,6 +16,7 @@ export default function Address(props) {
   const [order, setOrder] = useState("");
   const [message, setMessage] = useState("");
 
+
   useEffect(async () => {
     try {
       const responce = await getAllAddress();
@@ -135,6 +136,9 @@ export default function Address(props) {
                       margin: "5%",
                       padding: "140px",
                     }}
+                    onClick={() => {
+                      window.location.pathname = '/addaddress'
+                    }}
                   >
                     <MdAddCircleOutline size={"10em"} />
                     <h4>Add Address</h4>
@@ -157,14 +161,15 @@ export default function Address(props) {
                 </Col>
                 <Col lg={11}>
                   <Card
-                    style={{ margin: "50px 0px 150px 0px", padding: "30px" }}
+                    style={{ margin: "50px 0px 150px 0px", padding: "30px", height:'500px' }}
                   >
                     <img
-                      src={cart.url}
-                      style={{ width: "100%", height: "100%" }}
+                      src={'https://bit.ly/38kHETf'}
+                      alt={''}
+                      style={{ width: "90%", height: "250px" }}
                     />
                     <h4 style={{ margin: "50px" }}>
-                      price:{Math.floor(cart.price * cart.quantity)}
+                      Price : {cart?Math.floor(cart.price * cart.quantity):null}
                     </h4>
                   </Card>
                   <span
@@ -183,7 +188,7 @@ export default function Address(props) {
                       width: "90%",
                       height: "50px",
                       position: "relative",
-                      top: "-65px",
+                      top: "-225px",
                       left: "25px",
                     }}
                   >
