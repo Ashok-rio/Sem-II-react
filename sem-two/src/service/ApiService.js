@@ -140,3 +140,21 @@ exports.updateCart = async (updateValue) => {
         throw new Error(errorResponse.error)
     }
 }
+
+exports.getUser = async() =>{
+    const token = localStorage.getItem('usertoken')
+    const response = await fetch('http://localhost:3100/api/user/get', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+    })
+    if (response.status === 200) {
+        return await response.json();
+    }
+    else {
+        let errorResponse = await response.json()
+        throw new Error(errorResponse.error)
+    }
+}

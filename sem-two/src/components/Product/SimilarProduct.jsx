@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Container, CardBody, Card } from "reactstrap";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Images from "../Images/image 95.png";
 import ProductImage from "../Product/ProductImage";
 import StarIcon from "@material-ui/icons/Star";
 import { getAllProduct } from "../../service/ApiService";
@@ -14,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(5),
-    // textAlign: "center",
     color: theme.palette.text.secondary,
   },
 }));

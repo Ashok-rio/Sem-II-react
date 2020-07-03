@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import ProductImage from "./ProductImage";
-import Images from "../Images/image 95.png";
 import ImageTwo from "../Images/image 74.png";
 import "./product.css";
 import { Card, CardContent } from "@material-ui/core";
@@ -165,9 +164,9 @@ const Product = (props) => {
                             color="success"
                             style={{ width: "100%" }}
                             onClick={ async () => {
-                              var result = await createCart(products._id, products.quantity);
+                              var result = await createCart(products._id,1);
                               if (result.success === true) {
-                                // window.location = `/cart`;
+                                window.location = `/cart`;
                                 console.log('card',result)
                               }
       

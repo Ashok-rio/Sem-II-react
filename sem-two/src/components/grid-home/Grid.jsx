@@ -1,13 +1,8 @@
 import React from 'react'
-import Gall from './GridContent'
-import {AppBar,Avatar, Toolbar, Typography,InputBase, Button, IconButton,} from '@material-ui/core';
-import { makeStyles, fade } from '@material-ui/core/styles';
+// import Gall from './GridContent'
+import {Typography} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Radio from '@material-ui/core/Radio';
-import Paper from '@material-ui/core/Paper';
 import GridContent from './GridContent'
 import Images from './images'
 import './gall.css'
@@ -50,7 +45,7 @@ function GridImgs(props) {
           </Typography>
           <Grid container className={classes.root} spacing={10} style={{padding:'4%'}}>
            {Images.map(data =>{
-            return(<Grid item xs={3} className={classes.Itemdesign} >
+            return(<Grid item xs={3} className={classes.Itemdesign}>
                 <GridContent image={data}/>
             </Grid>)
            })}
