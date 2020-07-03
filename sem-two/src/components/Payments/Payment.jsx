@@ -40,6 +40,9 @@ const Payment = () => {
     if (payment.value === 'debit') {
       setDebit(!debit)
     }
+    else if (payment.value === 'COD') {
+      window.location = '/order'
+    }
     else {
       setPayment('')
     }

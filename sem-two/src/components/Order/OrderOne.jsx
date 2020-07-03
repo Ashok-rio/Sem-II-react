@@ -113,7 +113,7 @@ const OrderOne = (props) => {
       >
         <Row>
           {orderOne? renderOneOrder() :<p>***No product fount!</p>}
-          <Col style={{ marginTop: "70px" }}>
+          {orderOne?<Col style={{ marginTop: "70px" }}>
             <Card
               style={{
                 border: "none",
@@ -173,7 +173,7 @@ const OrderOne = (props) => {
                 </Row>
               </CardBody>
             </Card>
-          </Col>
+          </Col>:<p>***No status***</p>}
         </Row>
         <Row>
           <Col lg={8}></Col>

@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { signUp } from "../../../service/ApiService";
 import useForm from "../../../hooks/useForm";
 import {
@@ -12,23 +12,32 @@ import {
 } from "reactstrap";
 
 const Register = (props) => {
-  const [open ,setOpen] = useState(props.value);
+  const [open, setOpen] = useState(props.value);
   const [values, handleChanger] = useForm();
   const [message, setMessage] = useState("");
 
   const registerSubmit = async (e) => {
-      e.preventDefault();
-      let [email, phone, name, password] = [values.email, values.phone, values.name, values.password]; 
-    if (name !== '' && name !== undefined && name.length > 3) {
+    e.preventDefault();
+    let [email, phone, name, password] = [
+      values.email,
+      values.phone,
+      values.name,
+      values.password,
+    ];
+    if (name !== "" && name !== undefined && name.length > 3) {
       if (phone.length === 10) {
         if (email.includes("@")) {
           if (password.length === 8) {
-            
-            let result;
+            try {
+              let result;
               result = await signUp(values);
-            if (result.success)  return props.click
-             else {
-              setMessage(result.error);
+              if (result.success) {
+                return props.click;
+              } else {
+                setMessage(result.error);
+              }
+            } catch (e) {
+              throw e;
             }
           } else {
             setMessage("please enter the valid password");
@@ -43,7 +52,7 @@ const Register = (props) => {
       setMessage("please enter the valid name");
     }
   };
-  
+
   const toggle = () => setOpen(!open);
   return (
     <Modal isOpen={open}>
@@ -61,7 +70,10 @@ const Register = (props) => {
         </span>
       </div>
       <ModalBody>
-        <Form style={{ padding: "50px 0px 50px 60px" }} onSubmit={registerSubmit}>
+        <Form
+          style={{ padding: "50px 0px 50px 60px" }}
+          onSubmit={registerSubmit}
+        >
           <FormGroup row>
             <Col sm={12}>
               <Input
@@ -142,7 +154,9 @@ const Register = (props) => {
               />
             </Col>
           </FormGroup>
-          {message ? <div style={{marginLeft:'50px',color:'red'}}>{message}</div> : null}
+          {message ? (
+            <div style={{ marginLeft: "50px", color: "red" }}>{message}</div>
+          ) : null}
           <Button
             type="submit"
             style={{
@@ -155,9 +169,14 @@ const Register = (props) => {
             Register
           </Button>
         </Form>
-        <div style={{textAlign:'center'}}>
+        <div style={{ textAlign: "center" }}>
           Already Have A Account?&nbsp;&nbsp;
-          <span onClick={props.click} style={{color:'green',cursor:'pointer'}}>Login</span>
+          <span
+            onClick={props.click}
+            style={{ color: "green", cursor: "pointer" }}
+          >
+            Login
+          </span>
         </div>
       </ModalBody>
     </Modal>

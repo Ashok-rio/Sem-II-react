@@ -113,9 +113,9 @@ const Nav = (props) => {
           return console.log(result.error);
       }
   }
-  const moveOn=()=>{
-    props.history.push('/user/profile')
-  }
+  // const moveOn=()=>{
+  //   props.history.push('/user/profile')
+  // }
     return (
       <AppBar className={classes.background} position="static">
         <Toolbar>
@@ -150,7 +150,7 @@ const Nav = (props) => {
           ) : (
               <Toolbar>
                 {" "}
-                <Button className={classes.button} onClick={moveOn}>
+                <Button className={classes.button} onClick={()=> window.location = '/user/profile'}>
                   <AccountCircleIcon /> {user.name}
             </Button>
                 <Button disableRipple className={classes.buttonMyOrder}>

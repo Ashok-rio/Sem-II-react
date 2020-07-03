@@ -68,7 +68,7 @@ const Profile = () => {
                                             <h6>{user.phone}</h6>
                                             <br/>
                                             <br/>
-                                            <a  style={{textDecoration:'none'}} onClick={logout}><ExitToAppIcon style={{fontSize:'3.0rem !important'}} /></a>
+                                            <a  style={{textDecoration:'none'}} onClick={logout}>Log Out&nbsp;&nbsp;&nbsp;<ExitToAppIcon style={{fontSize:'3.0rem !important'}} /></a>
                                         </CardBody>
                                     </Card>
                                 </Col>
