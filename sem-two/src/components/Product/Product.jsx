@@ -47,7 +47,7 @@ const Product = (props) => {
                 <Col md={12}>
                   <Card
                     className={"productCardBox"}
-                    style={{ height: "700px", padding: "2%" }}
+                    style={{ height: "900px", padding: "2%" }}
                     variant="outlined"
                   >
                     <CardContent>

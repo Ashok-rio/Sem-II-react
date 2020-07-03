@@ -12,8 +12,9 @@ import OrderOne from './components/Order/OrderOne';
 import Address from './components/Address/Address'
 import AddAddress from './components/Address/addAddress'
 import EditAddress from './components/Address/EditAddress'
-
 import ProgressBar from './components/ProgressBar/ProgressBar';
+import ProgressBar from './components/ProgressBar/ProgressBar';
+import Profile from './components/User/profile/Profile'
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
       <Route exact path={'/order'} component={Orders} />
       <Route exact path={'/order/:id'} component={OrderOne} />
       <Route exact path={'/progress'} component={ProgressBar}/>
+      <Route exact path={'/profile'} component={Profile}/>
     </Router>
   );
 }
