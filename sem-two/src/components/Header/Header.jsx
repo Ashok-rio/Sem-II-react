@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import {
   AppBar,
   Avatar,
@@ -17,7 +17,8 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import OrderIcon from "../../img/Vector.png";
 import "./header.css";
 import { Login, Register } from "../User/index";
-
+import { getUserData } from "../../service/ApiService";
+import { toast } from "react-toastify";
 const useStyles = makeStyles((theme) => ({
   background: {
     backgroundColor: "#0063B1",
@@ -84,19 +85,59 @@ const Nav = (props) => {
   const [login, setLogin] = useState(false);
   const [register, setRegister] = useState(false);
   const classes = useStyles();
+  const [user, setUser] = useState({ admin: '' })
 
-  return (
-    <AppBar className={classes.background23}>
-      <Toolbar>
-        <Avatar alt="Remy Sharp" src={NavIcon} className={classes.navImg} />
+  toast.configure();
 
-        <Typography variant="h5" className={classes.title}>
-          Thanjore Craft
+  const toastOptions = {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: true
+  }
+  useEffect(() => {
+      getUser(1)
+  }, [])
+  const getUser = async () => {
+      let result;
+      result = await getUserData()
+      if (result.success) {
+          setUser(result.user)
+          toast.success(result.message, toastOptions);
+      }
+      else {
+          toast.error(result.error, toastOptions);
+          setLogin(true)
+          if (result.error.includes("Unauthorized")) {
+              window.history.push('/admin/login');
+          }
+          return console.log(result.error);
+      }
+  }
+  const moveOn=()=>{
+    props.history.push('/user/profile')
+  }
+    return (
+      <AppBar className={classes.background} position="static">
+        <Toolbar>
+          <Avatar alt="Remy Sharp" src={NavIcon} className={classes.navImg} />
+
+          <Typography variant="h5" className={classes.title}>
+            Thanjore Craft
         </Typography>
-        <div className={classes.search}>
-          <div className={classes.searchIcon}>
-            <SearchIcon />
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder="Search…"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ "aria-label": "search" }}
+            />
           </div>
+
           <InputBase
             placeholder="Search…"
             classes={{
@@ -105,7 +146,6 @@ const Nav = (props) => {
             }}
             inputProps={{ "aria-label": "search" }}
           />
-        </div>
         {!localStorage.usertoken ? (
           <Button
             className={classes.button}
@@ -122,33 +162,33 @@ const Nav = (props) => {
             <Button className={classes.button} onClick = {()=> window.location = '/profile'}>
               <AccountCircleIcon /> Username
             </Button>
-            <Button disableRipple className={classes.buttonMyOrder}>
-              <img src={OrderIcon} className={"ordericon-navbar"} alt={""} />
+                <Button disableRipple className={classes.buttonMyOrder}>
+                  <img src={OrderIcon} className={"ordericon-navbar"} alt={""} />
               MyOrders
             </Button>
-          </Toolbar>
-        )}
+              </Toolbar>
+            )}
 
-        <Button className={classes.button}>
-          <ShoppingCartOutlinedIcon />
+          <Button className={classes.button}>
+            <ShoppingCartOutlinedIcon />
           Cart
         </Button>
-      </Toolbar>
-      {login === true ? (
-        <Login
-          value={true}
-          click={() => {
-            setLogin(!login);
-            setRegister(!register);
-          }}
-        />
-      ) : null}
-      {register === true ? <Register value={true} click={() => {
-        setRegister(!register);
-        setLogin(!login);
-      }} /> : null}
-    </AppBar>
-  );
-};
+        </Toolbar>
+        {login === true ? (
+          <Login
+            value={true}
+            click={() => {
+              setLogin(!login);
+              setRegister(!register);
+            }}
+          />
+        ) : null}
+        {register === true ? <Register value={true} click={() => {
+          setRegister(!register);
+          setLogin(!login);
+        }} /> : null}
+      </AppBar>
+    );
+  };
 
-export default Nav;
+  export default Nav;

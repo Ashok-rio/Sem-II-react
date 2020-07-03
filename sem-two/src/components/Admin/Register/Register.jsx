@@ -1,5 +1,5 @@
 import React, { useState} from "react";
-import { signUp } from "../../../service/ApiService";
+import { adminsignUp } from "../../../service/ApiService";
 import useForm from "../../../hooks/useForm";
 import {
   Form,
@@ -12,7 +12,7 @@ import {
 } from "reactstrap";
 
 const Register = (props) => {
-  const [open ,setOpen] = useState(props.value);
+  const [open ] = useState(true);
   const [values, handleChanger] = useForm();
   const [message, setMessage] = useState("");
 
@@ -25,9 +25,10 @@ const Register = (props) => {
           if (password.length === 8) {
             
             let result;
-              result = await signUp(values);
-            if (result.success)  return props.click
-             else {
+              result = await adminsignUp(values);
+            if (result.success) {
+              window.location.pathname = "/admin/login";
+            } else {
               setMessage(result.error);
             }
           } else {
@@ -43,8 +44,12 @@ const Register = (props) => {
       setMessage("please enter the valid name");
     }
   };
-  
-  const toggle = () => setOpen(!open);
+  const close = () => {
+    window.history.back();
+  };
+  const moveOn=()=>{
+    window.location='/admin/login'
+  }
   return (
     <Modal isOpen={open}>
       <div
@@ -56,7 +61,7 @@ const Register = (props) => {
         }}
       >
         Register
-        <span style={{ float: "right" }} onClick={toggle}>
+        <span style={{ float: "right" }} onClick={close}>
           X
         </span>
       </div>
@@ -157,7 +162,7 @@ const Register = (props) => {
         </Form>
         <div style={{textAlign:'center'}}>
           Already Have A Account?&nbsp;&nbsp;
-          <span onClick={props.click} style={{color:'green',cursor:'pointer'}}>Login</span>
+          <span onClick={moveOn} style={{color:'green',cursor:'pointer'}}>Login</span>
         </div>
       </ModalBody>
     </Modal>

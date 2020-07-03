@@ -24,9 +24,7 @@
   ##Device = Desktops
   ##Screen = 1281px to higher resolution desktops
 */
-.modal{
-  top:40px !important;
-}
+
 @media (min-width: 1281px) {
   
     /* CSS */
@@ -39,7 +37,7 @@
        font-family: 'karla' !important;
    }
    .loginDiv{
-       padding-left: 20%;
+        padding-left: 20%;
        padding-top: 3%; 
        background-color: #745aaf;
        width: 100%;
@@ -91,7 +89,9 @@
         
     }
   }
-  
+  .modal{
+    top:40px !important;
+  }
   /* 
     ##Device = Tablets, Ipads (landscape)
     ##Screen = B/w 768px to 1024px

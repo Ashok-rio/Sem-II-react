@@ -14,7 +14,9 @@ import AddAddress from './components/Address/addAddress'
 import EditAddress from './components/Address/EditAddress'
 import ProgressBar from './components/ProgressBar/ProgressBar';
 import Profile from './components/User/profile/Profile'
-
+import AdminHome from './components/Admin/HomePage/AdminHome'
+import AdminLogin from './components/Admin/Login/Login'
+import AdminRegister from './components/Admin/Register/Register'
 const App = () => {
   return (
     <Router>
@@ -29,6 +31,10 @@ const App = () => {
       <Route exact path={'/order'} component={Orders} />
       <Route exact path={'/order/:id'} component={OrderOne} />
       <Route exact path={'/profile'} component={Profile}/>
+      <Route exact path={'/admin/home'}  component={AdminHome}/>
+      <Route exact path={'/admin/register'}  component={AdminRegister}/>
+      <Route exact path={'/admin/login'}  component={AdminLogin}/>
+      <Route exact path={'/user/profile'}  component={Profile}/>
     </Router>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { login } from "../../../service/ApiService";
+import { adminlogin } from "../../../service/ApiService";
 import {
   Form,
   Button,
@@ -15,13 +15,15 @@ import { toast } from "react-toastify";
 toast.configure();
 
 const toastOptions = {
-    position: "bottom-right",
-    autoClose: 3000,
-    hideProgressBar : true
-  }
-
+  position: "bottom-right",
+  autoClose: 3000,
+  hideProgressBar: true
+}
+const moveOn = () => {
+  window.location = '/admin/register'
+}
 const Login = (props) => {
-  const [open,setOpen] = useState(props.value);
+  const [open] = useState(true);
   const [values, handleChanger] = useForm();
   const [message, setMessage] = useState("");
 
@@ -31,14 +33,19 @@ const Login = (props) => {
     if (password.length === 8) {
       if (email !== "" && email !== undefined) {
         let result;
-          console.log(values);
-          result = await login(values);
+        console.log(values);
+        result = await adminlogin(values);
         if (result.success === true) {
-            console.log("success", result)
+          console.log("success", result)
+          if (result.user.admin === true) {
             toast.success(result.message, toastOptions);
             localStorage.setItem('usertoken', result.token);
-            if(localStorage) window.location = '/'
-            return result;
+            if (localStorage) window.location = '/admin/home'
+          }
+          else{
+            toast.error('Sorry your are not admin', toastOptions);
+          }
+          return result;
         } else {
           setMessage(result.error);
           toast.error(result.error, toastOptions);
@@ -50,11 +57,13 @@ const Login = (props) => {
       setMessage("please enter valid email");
     }
   };
+  const close = () => {
+    window.history.back();
+  };
 
-  const toggle = () => setOpen(!open);
   return (
     <div>
-      <Modal isOpen={open} toggle={toggle}>
+      <Modal isOpen={open}>
         <div
           style={{
             width: "100%",
@@ -64,7 +73,7 @@ const Login = (props) => {
           }}
         >
           Login
-          <span style={{ float: "right" }} onClick={toggle}>
+          <span style={{ float: "right" }} onClick={close}>
             X
           </span>
         </div>
@@ -113,7 +122,7 @@ const Login = (props) => {
                 />
               </Col>
             </FormGroup>
-            {message ? <div style={{marginLeft:'50px',color:'red'}}>{message}</div> : null}
+            {message ? <div style={{ marginLeft: '50px', color: 'red' }}>{message}</div> : null}
             <Button
               type="submit"
               style={{
@@ -126,8 +135,8 @@ const Login = (props) => {
               Login
             </Button>
           </Form>
-          <div style={{textAlign:'center'}}>
-            Don't have a account means?&nbsp;&nbsp;<span style={{color:'green',cursor:'pointer'}} onClick={props.click}>Register</span>
+          <div style={{ textAlign: 'center' }}>
+            Don't have a account means?&nbsp;&nbsp;<span style={{ color: 'green', cursor: 'pointer' }} onClick={moveOn}>Register</span>
           </div>
         </ModalBody>
       </Modal>

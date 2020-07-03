@@ -6,11 +6,11 @@ import { getSlickImgs } from '../../service/ApiService';
 import './slide.css'
 
 var settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    dots:true,
+    autoplay: true,
+    autoplaySpeed: 2000,
   };
 const Sliders = props =>{
 
@@ -36,7 +36,7 @@ const Sliders = props =>{
         return Imgs.map(data =>(
             <div key={data._id}>  
                  <img  src={data.url} className={'Slick-img'} alt={''} />
-                </div>
+            </div>
         ))
     }
   
