@@ -63,7 +63,7 @@ const Payment = () => {
                 <Col md={12}>
                   <Card style={{ width: "100%", padding: "5%", border: "none" }}>
                     <CardBody>
-                      <ProgressBar value={40} />
+                      <ProgressBar value={70} />
                     </CardBody>
                   </Card>
                 </Col>
