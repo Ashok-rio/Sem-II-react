@@ -119,7 +119,7 @@ const Nav = (props) => {
         ) : (
           <Toolbar>
             {" "}
-            <Button className={classes.button}>
+            <Button className={classes.button} onClick = {()=> window.location = '/profile'}>
               <AccountCircleIcon /> Username
             </Button>
             <Button disableRipple className={classes.buttonMyOrder}>
