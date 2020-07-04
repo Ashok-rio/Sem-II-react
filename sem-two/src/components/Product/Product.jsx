@@ -7,7 +7,16 @@ import { Card, CardContent } from "@material-ui/core";
 import StarIcon from "@material-ui/icons/Star";
 import Header from "../Header/Header";
 import SimilarProduct from "./SimilarProduct";
-import { getProductOne , createCart} from "../../service/ApiService";
+import { getProductOne, createCart } from "../../service/ApiService";
+import { toast } from "react-toastify";
+
+toast.configure();
+
+const toastOptions = {
+  position: "bottom-right",
+  autoClose: 3000,
+  hideProgressBar: true
+}
 
 const Product = (props) => {
   const { match } = props;
@@ -17,7 +26,6 @@ const Product = (props) => {
   const [star] = useState(5);
   const [product] = useState({ id: id });
   const [products, setProducts] = useState({});
-
 
   useEffect(() => {
     async function fetchData() {
@@ -163,13 +171,22 @@ const Product = (props) => {
                           <Button
                             color="success"
                             style={{ width: "100%" }}
-                            onClick={ async () => {
-                              var result = await createCart(products._id,1);
-                              if (result.success === true) {
-                                window.location = `/cart`;
-                                console.log('card',result)
-                              }
-      
+                            onClick={async () => {
+                              try {
+                                let token = localStorage.getItem("usertoken") 
+                                if (token) {
+                                  var result = await createCart(
+                                    products._id,
+                                    1
+                                  );
+                                  if (result.success === true) {
+                                    window.location = `/cart`;
+                                    console.log("card", result);
+                                  }
+                                } else {
+                                  toast.error('Please Login !', toastOptions);
+                                }
+                              } catch (e) {}
                             }}
                           >
                             Buy now(Rs.{products.price})

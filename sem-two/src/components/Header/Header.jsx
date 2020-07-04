@@ -19,6 +19,8 @@ import "./header.css";
 import { Login, Register } from "../User/index";
 import { getUserData } from "../../service/ApiService";
 import { toast } from "react-toastify";
+
+
 const useStyles = makeStyles((theme) => ({
   background: {
     backgroundColor: "#0063B1",
@@ -160,7 +162,7 @@ const Nav = (props) => {
                 <Button className={classes.button} onClick={()=> window.location = '/user/profile'}>
                   <AccountCircleIcon /> {user.name}
             </Button>
-                <Button disableRipple className={classes.buttonMyOrder}>
+                <Button disableRipple className={classes.buttonMyOrder}onClick={() => window.location = '/order'} >
                   <a href={'/'}>
                   <img src={OrderIcon}  className={"ordericon-navbar"} alt={""} /></a>
               MyOrders

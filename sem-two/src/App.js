@@ -12,9 +12,6 @@ import OrderOne from './components/Order/OrderOne';
 import Address from './components/Address/Address'
 import AddAddress from './components/Address/addAddress'
 import EditAddress from './components/Address/EditAddress'
-import AdminHome from './components/Admin/HomePage/AdminHome'
-import AdminLogin from './components/Admin/Login/Login'
-import AdminRegister from './components/Admin/Register/Register'
 import Profile from './components/Profile/profile'
 
 const App = () => {
@@ -32,12 +29,8 @@ const App = () => {
       
       <Route exact path={'/order'} component={Orders} />
       <Route exact path={'/order/:id'} component={OrderOne} />
-
-
-      <Route exact path={'/admin/home'}  component={AdminHome}/>
-      <Route exact path={'/admin/register'}  component={AdminRegister}/>
-      <Route exact path={'/admin/login'}  component={AdminLogin}/>
-      <Route exact path={'/user/profile'}  component={Profile}/>
+      <Route exact path={'/user/profile'} component={Profile} />
+      
     </Router>
   );
 }

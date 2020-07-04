@@ -10,12 +10,17 @@ import {
   createOrder,
 } from "./../../service/ApiService";
 import ProgressBar from '../ProgressBar/ProgressBar';
+import Payment from "../Payments/Payment";
 
 export default function Address(props) {
   const [address, setAddress] = useState([]);
   const [cart, setCart] = useState({});
   const [order, setOrder] = useState("");
   const [message, setMessage] = useState("");
+
+  const [payments, setPayments] = useState(false);
+  const [orderId, setOrderId] = useState();
+
 
 
   useEffect(() => {
@@ -37,8 +42,8 @@ export default function Address(props) {
       try {
         const result = await createOrder(order);
         if (result) {
-          console.log("created successfully");
-          window.location.pathname = "/payment";
+          await setPayments(!payments)
+          await setOrderId(result._id);
         }
       } catch (e) {}
     } else {
@@ -64,15 +69,15 @@ export default function Address(props) {
   return (
     <React.Fragment>
       <Header />
-      <Container fluid={true}>
+      {payments === false ? <Container fluid={true}>
         <Row>
           <Col lg={8}>
             <Container>
-            <Row>
-              <Col lg={12} style={{padding:"5%"}}>
-              <ProgressBar value={40} />
-              </Col>
-            </Row>
+              <Row>
+                <Col lg={12} style={{ padding: "5%" }}>
+                  <ProgressBar value={40} />
+                </Col>
+              </Row>
               <Row>
                 <Col lg={12}>
                   <h1
@@ -172,7 +177,7 @@ export default function Address(props) {
                 </Col>
                 <Col lg={11}>
                   <Card
-                    style={{ margin: "50px 0px 150px 0px", padding: "30px", height:'500px' }}
+                    style={{ margin: "50px 0px 150px 0px", padding: "30px", height: '500px' }}
                   >
                     <img
                       src={'https://bit.ly/38kHETf'}
@@ -180,7 +185,7 @@ export default function Address(props) {
                       style={{ width: "90%", height: "250px" }}
                     />
                     <h4 style={{ margin: "50px" }}>
-                      Price : {cart?Math.floor(cart.price * cart.quantity):null}
+                      Price : {cart ? Math.floor(cart.price * cart.quantity) : null}
                     </h4>
                   </Card>
                   <span
@@ -210,7 +215,8 @@ export default function Address(props) {
             </Container>
           </Col>
         </Row>
-      </Container>
+      </Container> :
+      <Payment id={orderId} /> }
     </React.Fragment>
   );
 }

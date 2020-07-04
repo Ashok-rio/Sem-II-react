@@ -1,20 +1,37 @@
-import React, { useState } from "react";
+import React from "react";
 import { Grid, Button } from "@material-ui/core";
 import { CardBody, Card, Col, Row, Form } from "reactstrap";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useForm from "../../hooks/useForm";
+import API from '../../service/ApiService';
+import { toast } from "react-toastify";
 
-const PaymentCard = () => {
+toast.configure();
+
+const toastOptions = {
+  position: "bottom-right",
+  autoClose: 3000,
+  hideProgressBar: true,
+};
+
+const PaymentCard = (props) => {
+
+
   const [values, handleChanger] = useForm();
-  const initialState = new Date();
-  const [startDate, setStartDate] = useState(initialState);
 
   const paymentAccount = async () => {
-    console.group("Account");
-    console.log("Values", values);
-    console.log("Date", startDate);
-    console.groupEnd();
+    try {
+      
+      let result;
+      await console.log(values);
+      result = await API.payment(values);
+      if (result.success === true) {
+        toast.success(result.message, toastOptions);
+        window.location = '/order';
+      }
+    }catch (e) {
+      console.log(e);
+    }
   };
   return (
     <React.Fragment>
@@ -32,7 +49,7 @@ const PaymentCard = () => {
               <CardBody>
                 <Form>
                   <Row>
-                    <Col md={12} style={{ padding: "2%" }}>
+                    <Col md={12} style={{ padding: "2%" }}>  
                       <input
                         type="text"
                         name="cardname"
@@ -54,19 +71,28 @@ const PaymentCard = () => {
                         value={values.cardnumber || ""}
                         onChange={handleChanger}
                       />
+                      <input
+                        disabled={true}
+                        style={{display:'none'}}
+                        type="password"
+                        name="cardnumber"
+                        className={"cardInputFiled"}
+                        placeholder="Card Number"
+                        value={values.id = props.id}
+                        onChange={handleChanger}
+                      />
                     </Col>
                   </Row>
                   <Row>
-                    <Col md={6} style={{ padding: "6.3%" }}>
-                      <div style={{ width: "100%" }}>
-                        Expiration Date :&nbsp; : &nbsp;&nbsp;&nbsp;
-                        <DatePicker
-                          style={{ border: "none" }}
-                          name="expriy"
-                          selected={startDate}
-                          onChange={(date) => setStartDate(date)}
-                        />
-                      </div>
+                    <Col md={6} style={{ padding: "2%" }}>
+                      <input
+                        type="text"
+                        name="expiry"
+                        className={"cardInputFiled"}
+                        placeholder="expiry"
+                        value={values.expiry || ""}
+                        onChange={handleChanger}
+                      />
                     </Col>
                     <Col md={6} style={{ padding: "2%" }}>
                       <input

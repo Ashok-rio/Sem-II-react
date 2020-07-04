@@ -29,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Payment = () => {
+const Payment = (props) => {
+  
   const [payment, setPayment] = useState();
   const [debit, setDebit] = useState(false);
 
@@ -142,7 +143,7 @@ const Payment = () => {
                 </Col>
               </Row>
             </Grid> :
-            <PaymentCard />}
+            <PaymentCard id={props.id} />}
           <PaymentSideCard />
         </Grid>
       </Container>
